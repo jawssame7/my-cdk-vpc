@@ -97,5 +97,12 @@ export class MyCdkVpcStack extends cdk.Stack {
       Port.tcp(22),
       "Allow SSH access from the public security group"
     );
+
+    // public security group から MySQL へのアクセスを許可
+    privateSg.addIngressRule(
+      publicSg,
+      Port.tcp(3306),
+      "Allow MySQL access from the public security group"
+    );
   }
 }
